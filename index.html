@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" style="color-scheme: light; background: #FFE135 !important;">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="color-scheme" content="only light" />
+  <meta name="color-scheme" content="light" />
   <meta name="supported-color-schemes" content="light" />
+  <!-- Force light mode before any rendering -->
+  <style>
+    :root { color-scheme: light !important; }
+    html, body { background: #FFE135 !important; }
+  </style>
   <title>BOANANA – Keripik Pisang Kekinian dari Purwokerto</title>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
@@ -35,29 +40,55 @@
       overflow-x: hidden;
     }
 
-    /* ─── FORCE LIGHT MODE – BLOCK DARK MODE ─── */
+    /* ─── FORCE LIGHT MODE – NUCLEAR OPTION ─── */
     @media (prefers-color-scheme: dark) {
-      :root {
-        --yellow: #FFE135 !important;
-        --yellow2: #FFD000 !important;
-        --brown: #7B3F00 !important;
-        --brown-light: #C47A2B !important;
-        --cream: #FFF9EC !important;
-        --pink: #FF6B9D !important;
-        --mint: #00C9A7 !important;
-        --purple: #9B59B6 !important;
-        --taro: #B39DDB !important;
-        --dark: #2C1A00 !important;
-        --white: #FFFFFF !important;
-      }
-      html, body {
-        background: #FFE135 !important;
-        color: #2C1A00 !important;
-      }
-      input, select, textarea, button {
-        background-color: white !important;
-        color: #2C1A00 !important;
-      }
+      html, body { background: #FFE135 !important; color: #2C1A00 !important; }
+      nav { background: #FFE135 !important; box-shadow: 0 4px 0 #FFD000, 0 8px 20px rgba(0,0,0,0.15) !important; }
+      .nav-links a { color: #7B3F00 !important; }
+      .nav-links a:hover { background: #7B3F00 !important; color: #FFE135 !important; }
+      .nav-drawer { background: #7B3F00 !important; }
+      .nav-drawer a { color: #FFE135 !important; }
+      .hamburger span { background: #7B3F00 !important; }
+      #hero { background: linear-gradient(160deg, #FFE135 0%, #FFD000 60%, #FFC200 100%) !important; }
+      .hero-tagline { background: #FFFFFF !important; color: #7B3F00 !important; }
+      .btn-main { background: #7B3F00 !important; color: #FFE135 !important; }
+      .btn-outline { color: #7B3F00 !important; border-color: #7B3F00 !important; }
+      #tentang { background: #FFF9EC !important; }
+      .tentang-text p { color: #555555 !important; }
+      .section-title { color: #7B3F00 !important; }
+      .section-pill { background: #7B3F00 !important; color: #FFE135 !important; }
+      .stat-box { background: #FFE135 !important; border-color: #7B3F00 !important; }
+      .stat-box .num { color: #7B3F00 !important; }
+      .stat-box .lbl { color: #7B3F00 !important; }
+      .big-banana-ring { background: #FFE135 !important; border-color: #7B3F00 !important; }
+      .floating-tag { background: #FFFFFF !important; color: #7B3F00 !important; border-color: #7B3F00 !important; }
+      #varian { background: #FFE135 !important; }
+      .varian-card { background: #FFFFFF !important; border-color: #7B3F00 !important; color: #2C1A00 !important; }
+      .varian-name { color: #7B3F00 !important; }
+      .varian-desc { color: #666666 !important; }
+      #kemitraan { background: #7B3F00 !important; }
+      .paket-card { background: #FFF9EC !important; }
+      .paket-card.hot { background: #FFE135 !important; }
+      .paket-name { color: #7B3F00 !important; }
+      .paket-price { color: #2C1A00 !important; }
+      .paket-list li { color: #444444 !important; border-color: rgba(123,63,0,0.15) !important; }
+      .btn-paket { background: #7B3F00 !important; color: #FFE135 !important; }
+      #kritik { background: #FFF9EC !important; }
+      .kritik-wrap h2 { color: #7B3F00 !important; }
+      .fg label { color: #7B3F00 !important; }
+      .fg input, .fg select, .fg textarea { background: #FFFFFF !important; color: #2C1A00 !important; border-color: #FFD000 !important; }
+      .btn-send { background: #7B3F00 !important; color: #FFE135 !important; }
+      #kontak { background: #FFD000 !important; }
+      .section-title { color: #7B3F00 !important; }
+      .k-text strong { color: #7B3F00 !important; }
+      .k-text p { color: #7B3F00 !important; }
+      .k-icon { background: #7B3F00 !important; }
+      .sos-btn { background: #7B3F00 !important; color: #FFE135 !important; }
+      .kontak-form input, .kontak-form textarea { background: #FFFFFF !important; color: #2C1A00 !important; border-color: #7B3F00 !important; }
+      .btn-kontak-send { background: #7B3F00 !important; color: #FFE135 !important; }
+      footer { background: #2C1A00 !important; color: #FFF9EC !important; }
+      .footer-links a { color: #FFE135 !important; }
+      .wave-wrap { filter: none !important; }
     }
     .dots-bg {
       background-image: radial-gradient(circle, rgba(0,0,0,0.07) 1px, transparent 1px);
@@ -1460,7 +1491,7 @@
         <div class="k-icon">📧</div>
         <div class="k-text">
           <strong>Email</strong>
-          <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b9d1d8d5d6f9dbd6d8d7d8d7d897d0dd">[email&#160;protected]</a></p>
+          <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b9d1d8d5d6f9dbd6d8d7d8d7d897d0dd"></a>Halo.Boanana@gmail.com</p>
         </div>
       </div>
       <div class="kontak-item reveal">
