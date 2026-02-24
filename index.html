@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BOANANA – Keripik Pisang Kekinian dari Purwokerto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --yellow: #FFE135;
+      --yellow2: #FFD000;
+      --brown: #7B3F00;
+      --brown-light: #C47A2B;
+      --cream: #FFF9EC;
+      --pink: #FF6B9D;
+      --mint: #00C9A7;
+      --purple: #9B59B6;
+      --taro: #B39DDB;
+      --dark: #2C1A00;
+      --white: #FFFFFF;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--yellow);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* DOTS PATTERN BG */
+    .dots-bg {
+      background-image: radial-gradient(circle, rgba(0,0,0,0.07) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--yellow2); }
+    ::-webkit-scrollbar-thumb { background: var(--brown); border-radius: 10px; }
+
+    /* ─── FLOATING SHAPES ─── */
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5vw;
+      height: 72px;
+      background: var(--brown);
+      box-shadow: 0 4px 0 var(--brown-light), 0 8px 20px rgba(0,0,0,0.25);
+    }
+
+    .nav-logo img {
+      height: 150px;
+      object-fit: contain;
+      filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(5deg);
+      transition: transform 0.3s;
+    }
+    .nav-logo img:hover { transform: scale(1.08) rotate(-3deg); }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--yellow);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 50px;
+      transition: all 0.25s;
+    }
+    .nav-links a:hover {
+      background: var(--yellow);
+      color: var(--brown);
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 72px;
+      background: linear-gradient(160deg, #FFE135 0%, #FFD000 60%, #FFC200 100%);
+    }
+
+    /* Wiggly circles */
+    #hero .c1 { width: 300px; height: 300px; background: rgba(255,255,255,0.18); top: -80px; left: -80px; animation: floatCircle 6s ease-in-out infinite; }
+    #hero .c2 { width: 200px; height: 200px; background: rgba(255,107,157,0.15); bottom: 60px; right: -60px; animation: floatCircle 5s ease-in-out infinite reverse; }
+    #hero .c3 { width: 120px; height: 120px; background: rgba(0,201,167,0.15); top: 30%; left: 5%; animation: floatCircle 7s ease-in-out infinite 1s; }
+    #hero .c4 { width: 80px; height: 80px; background: rgba(155,89,182,0.2); top: 20%; right: 10%; animation: floatCircle 4s ease-in-out infinite 0.5s; }
+
+    @keyframes floatCircle {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-20px) scale(1.05); }
+    }
+
+    .hero-inner {
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 20px;
+    }
+
+    .hero-logo {
+      width: min(200px, 80vw);
+      animation: heroPop 0.8s cubic-bezier(0.34,1.56,0.64,1) forwards;
+      filter: drop-shadow(0 12px 30px rgba(123,63,0,0.3));
+    }
+
+    @keyframes heroPop {
+      from { opacity: 0; transform: scale(0.5) rotate(-10deg); }
+      to { opacity: 1; transform: scale(1) rotate(0deg); }
+    }
+
+    .hero-tagline {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      color: var(--brown);
+      background: var(--white);
+      padding: 10px 32px;
+      border-radius: 50px;
+      box-shadow: 4px 4px 0 var(--brown);
+      animation: fadeUp 0.8s 0.3s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-bananas {
+      display: flex;
+      gap: 10px;
+      font-size: 2.5rem;
+      animation: fadeUp 0.8s 0.5s ease forwards;
+      opacity: 0;
+    }
+    .hero-bananas span {
+      display: inline-block;
+      animation: wiggle 2s ease-in-out infinite;
+    }
+    .hero-bananas span:nth-child(2) { animation-delay: 0.2s; }
+    .hero-bananas span:nth-child(3) { animation-delay: 0.4s; }
+    .hero-bananas span:nth-child(4) { animation-delay: 0.6s; }
+    .hero-bananas span:nth-child(5) { animation-delay: 0.8s; }
+
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(-8deg) translateY(0); }
+      50% { transform: rotate(8deg) translateY(-10px); }
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeUp 0.8s 0.7s ease forwards;
+      opacity: 0;
+    }
+
+    .btn-main {
+      background: var(--brown);
+      color: var(--yellow);
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      padding: 14px 38px;
+      border-radius: 50px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 var(--dark);
+      transition: all 0.2s;
+      display: inline-block;
+    }
+    .btn-main:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--dark);
+    }
+    .btn-main:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 var(--dark);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--brown);
+      border: 3px solid var(--brown);
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.2rem;
+      padding: 14px 38px;
+      border-radius: 50px;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 var(--brown);
+      transition: all 0.2s;
+      display: inline-block;
+    }
+    .btn-outline:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--brown);
+      background: var(--white);
+    }
+
+    .scroll-down {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      animation: bounce 1.5s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(10px); }
+    }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 90px 5vw; position: relative; }
+
+    .section-pill {
+      display: inline-block;
+      background: var(--brown);
+      color: var(--yellow);
+      font-family: 'Fredoka One', cursive;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 20px;
+      border-radius: 50px;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      color: var(--brown);
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    /* ─── TENTANG ─── */
+    #tentang {
+      background: var(--cream);
+      overflow: hidden;
+    }
+
+    .tentang-wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .tentang-text p {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: #555;
+      margin-bottom: 16px;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .stat-box {
+      background: var(--yellow);
+      border: 3px solid var(--brown);
+      border-radius: 20px;
+      padding: 22px;
+      text-align: center;
+      box-shadow: 4px 4px 0 var(--brown);
+      transition: transform 0.2s;
+    }
+    .stat-box:hover { transform: translate(-2px, -2px); }
+    .stat-box .num {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.2rem;
+      color: var(--brown);
+      line-height: 1;
+    }
+    .stat-box .lbl {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--brown);
+      opacity: 0.7;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+    }
+
+    .tentang-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .big-banana-ring {
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background: var(--yellow);
+      border: 5px solid var(--brown);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9rem;
+      box-shadow: 8px 8px 0 var(--brown);
+      animation: slowSpin 10s linear infinite;
+      position: relative;
+    }
+
+    @keyframes slowSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .big-banana-ring .inner-banana {
+      animation: slowSpin 10s linear infinite reverse;
+      display: block;
+    }
+
+    .floating-tag {
+      position: absolute;
+      background: var(--white);
+      border: 3px solid var(--brown);
+      border-radius: 16px;
+      padding: 10px 18px;
+      font-family: 'Fredoka One', cursive;
+      font-size: 1rem;
+      color: var(--brown);
+      box-shadow: 3px 3px 0 var(--brown);
+      animation: floatTag 3s ease-in-out infinite;
+    }
+    .floating-tag:nth-child(2) { top: 20px; right: -20px; animation-delay: 0s; }
+    .floating-tag:nth-child(3) { bottom: 20px; left: -30px; animation-delay: 1s; }
+    .floating-tag:nth-child(4) { top: 50%; right: -40px; animation-delay: 0.5s; }
+    @keyframes floatTag {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ─── VARIAN ─── */
+    #varian {
+      background: var(--yellow);
+    }
+    #varian .dots-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .varian-header {
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .varian-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .varian-card {
+      background: var(--white);
+      border: 3px solid var(--brown);
+      border-radius: 28px;
+      padding: 36px 24px 28px;
+      text-align: center;
+      box-shadow: 6px 6px 0 var(--brown);
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .varian-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 8px;
+      background: var(--vcolor);
+      border-radius: 28px 28px 0 0;
+    }
+
+    .varian-card:hover {
+      transform: translate(-4px, -6px) rotate(-1deg);
+      box-shadow: 10px 10px 0 var(--brown);
+    }
+
+    .varian-emoji {
+      font-size: 5rem;
+      display: block;
+      margin-bottom: 16px;
+      animation: emojiPop 3s ease-in-out infinite;
+    }
+
+    @keyframes emojiPop {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1) rotate(5deg); }
+    }
+
+    .varian-name {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.7rem;
+      color: var(--brown);
+      margin-bottom: 10px;
+    }
+
+    .varian-desc {
+      font-size: 0.92rem;
+      color: #666;
+      line-height: 1.7;
+    }
+
+    .varian-tag {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 5px 18px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      background: var(--vcolor);
+      color: white;
+    }
+
+    /* ─── KEMITRAAN ─── */
+    #kemitraan {
+      background: var(--brown);
+      overflow: hidden;
+    }
+
+    #kemitraan .section-pill { background: var(--yellow); color: var(--brown); }
+    #kemitraan .section-title { color: var(--yellow); }
+    #kemitraan > p { color: var(--cream); opacity: 0.8; max-width: 600px; font-size: 1.05rem; margin-bottom: 50px; }
+
+    .paket-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 28px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .paket-card {
+      background: var(--cream);
+      border: 3px solid var(--brown-light);
+      border-radius: 24px;
+      padding: 36px 28px;
+      box-shadow: 6px 6px 0 rgba(0,0,0,0.2);
+      transition: all 0.25s;
+      position: relative;
+    }
+
+    .paket-card.hot {
+      background: var(--yellow);
+      border-color: var(--yellow2);
+    }
+
+    .paket-card:hover {
+      transform: translate(-3px, -5px);
+      box-shadow: 9px 9px 0 rgba(0,0,0,0.25);
+    }
+
+    .hot-badge {
+      position: absolute;
+      top: -16px; right: 20px;
+      background: var(--pink);
+      color: white;
+      font-family: 'Fredoka One', cursive;
+      font-size: 0.9rem;
+      padding: 5px 18px;
+      border-radius: 50px;
+      border: 2px solid white;
+      box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+    }
+
+    .paket-icon { font-size: 3rem; margin-bottom: 12px; display: block; }
+    .paket-name {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.6rem;
+      color: var(--brown);
+      margin-bottom: 6px;
+    }
+    .paket-price {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2rem;
+      color: var(--brown);
+      margin-bottom: 20px;
+    }
+
+    .paket-list {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+    .paket-list li {
+      padding: 8px 0;
+      border-bottom: 2px dashed rgba(123,63,0,0.15);
+      font-size: 0.92rem;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      color: #444;
+    }
+    .paket-list li::before { content: '🍌'; flex-shrink: 0; }
+
+    .btn-paket {
+      display: block;
+      text-align: center;
+      background: var(--brown);
+      color: var(--yellow);
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.15rem;
+      padding: 12px;
+      border-radius: 14px;
+      text-decoration: none;
+      border: 2px solid var(--brown);
+      box-shadow: 3px 3px 0 var(--dark);
+      transition: all 0.2s;
+    }
+    .btn-paket:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0 var(--dark);
+    }
+
+    /* ─── KRITIK & SARAN ─── */
+    #kritik {
+      background: var(--cream);
+    }
+
+    .kritik-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .fg {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .fg label {
+      font-weight: 900;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--brown);
+    }
+
+    .fg input, .fg select, .fg textarea {
+      background: white;
+      border: 3px solid var(--yellow2);
+      border-radius: 14px;
+      padding: 12px 16px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      color: var(--dark);
+      outline: none;
+      transition: all 0.25s;
+      box-shadow: 3px 3px 0 var(--yellow2);
+    }
+    .fg input:focus, .fg select:focus, .fg textarea:focus {
+      border-color: var(--brown);
+      box-shadow: 3px 3px 0 var(--brown);
+    }
+    .fg textarea { height: 130px; resize: vertical; }
+
+    .star-row {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      gap: 6px;
+    }
+    .star-row input { display: none; }
+    .star-row label {
+      font-size: 2rem;
+      cursor: pointer;
+      transition: transform 0.15s;
+      filter: grayscale(1);
+      opacity: 0.4;
+    }
+    .star-row label:hover,
+    .star-row label:hover ~ label,
+    .star-row input:checked ~ label {
+      filter: none;
+      opacity: 1;
+      transform: scale(1.2);
+    }
+
+    .btn-send {
+      width: 100%;
+      background: var(--brown);
+      color: var(--yellow);
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.3rem;
+      padding: 16px;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 var(--dark);
+      transition: all 0.2s;
+      margin-top: 8px;
+    }
+    .btn-send:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--dark);
+    }
+
+    .toast {
+      display: none;
+      background: var(--mint);
+      border: 3px solid #00a085;
+      border-radius: 16px;
+      padding: 18px 24px;
+      text-align: center;
+      margin-top: 18px;
+      color: white;
+      font-weight: 800;
+      font-size: 1.05rem;
+      box-shadow: 4px 4px 0 #00a085;
+    }
+
+    /* ─── KONTAK ─── */
+    #kontak {
+      background: var(--yellow2);
+    }
+
+    .kontak-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .kontak-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .k-icon {
+      width: 56px; height: 56px;
+      background: var(--brown);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+      box-shadow: 3px 3px 0 var(--dark);
+    }
+
+    .k-text strong {
+      display: block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--brown);
+      opacity: 0.65;
+      margin-bottom: 3px;
+    }
+    .k-text p {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--brown);
+    }
+
+    .sosmed-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .sos-btn {
+      background: var(--brown);
+      color: var(--yellow);
+      font-family: 'Fredoka One', cursive;
+      font-size: 0.95rem;
+      padding: 10px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 3px 3px 0 var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .sos-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0 var(--dark);
+    }
+
+    .kontak-form input, .kontak-form textarea {
+      width: 100%;
+      background: white;
+      border: 3px solid var(--brown);
+      border-radius: 14px;
+      padding: 12px 16px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      color: var(--dark);
+      outline: none;
+      margin-bottom: 14px;
+      box-shadow: 3px 3px 0 var(--brown);
+      transition: all 0.25s;
+    }
+    .kontak-form input:focus, .kontak-form textarea:focus {
+      box-shadow: 5px 5px 0 var(--brown);
+    }
+    .kontak-form textarea { height: 120px; resize: vertical; }
+
+    .btn-kontak-send {
+      background: var(--brown);
+      color: var(--yellow);
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.2rem;
+      padding: 14px 40px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 var(--dark);
+      transition: all 0.2s;
+    }
+    .btn-kontak-send:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0 var(--dark);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark);
+      color: var(--cream);
+      text-align: center;
+      padding: 50px 5vw 30px;
+    }
+
+    footer img {
+      height: 60px;
+      object-fit: contain;
+      filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(5deg);
+      margin-bottom: 14px;
+    }
+
+    footer p { opacity: 0.45; font-size: 0.9rem; margin-top: 10px; }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin: 16px 0;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: var(--yellow);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .footer-links a:hover { opacity: 1; }
+
+    /* ─── REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── HAMBURGER MENU ─── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 3px;
+      background: var(--yellow);
+      border-radius: 3px;
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* Mobile nav drawer */
+    .nav-drawer {
+      display: none;
+      position: fixed;
+      top: 72px; left: 0; right: 0;
+      background: var(--brown);
+      padding: 20px 5vw 28px;
+      z-index: 999;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+      border-top: 3px solid var(--yellow);
+    }
+    .nav-drawer.open { display: block; }
+    .nav-drawer a {
+      display: block;
+      color: var(--yellow);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 1.1rem;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,215,0,0.15);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .nav-drawer a:last-child { border-bottom: none; }
+
+    /* ─── TV / LARGE MONITORS (1600px+) ─── */
+    @media (min-width: 1600px) {
+      nav { padding: 0 8vw; }
+      section { padding: 120px 8vw; }
+      .section-title { font-size: 4rem; }
+      .tentang-wrap, .kontak-wrap { max-width: 1400px; gap: 80px; }
+      .varian-grid { max-width: 1400px; grid-template-columns: repeat(3, 1fr); }
+      .paket-grid { max-width: 1300px; }
+      .kritik-wrap { max-width: 900px; }
+      .hero-logo { width: 500px; }
+      .big-banana-ring { width: 420px; height: 420px; font-size: 11rem; }
+      .stat-box .num { font-size: 2.8rem; }
+    }
+
+    /* ─── TABLET LANDSCAPE (1024px - 1279px) ─── */
+    @media (max-width: 1279px) {
+      .varian-grid { grid-template-columns: repeat(3, 1fr); }
+      .paket-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* ─── TABLET PORTRAIT (768px - 1023px) ─── */
+    @media (max-width: 1023px) {
+      nav { padding: 0 4vw; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      section { padding: 70px 5vw; }
+
+      .tentang-wrap {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+      .stats-row { grid-template-columns: repeat(4, 1fr); }
+      .tentang-visual { justify-content: center; }
+      .big-banana-ring { width: 260px; height: 260px; font-size: 7rem; }
+      .floating-tag:nth-child(2) { top: 0; right: 0; }
+      .floating-tag:nth-child(3) { bottom: 0; left: 0; }
+      .floating-tag:nth-child(4) { display: none; }
+
+      .varian-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .paket-grid { grid-template-columns: repeat(2, 1fr); }
+      .paket-card:last-child { grid-column: 1 / -1; max-width: 400px; margin: 0 auto; width: 100%; }
+
+      .kontak-wrap {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .form-row { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ─── MOBILE (max 767px) ─── */
+    @media (max-width: 767px) {
+      nav { padding: 0 4vw; height: 64px; }
+      .nav-logo img { height: 44px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-drawer { top: 64px; }
+
+      section { padding: 60px 5vw; }
+
+      /* Hero */
+      .hero-logo { width: min(280px, 80vw); }
+      .hero-bananas { font-size: 1.8rem; gap: 6px; }
+      .hero-tagline { font-size: 0.9rem; padding: 8px 20px; text-align: center; }
+      .hero-btns { flex-direction: column; align-items: center; gap: 12px; }
+      .btn-main, .btn-outline { width: 100%; max-width: 300px; text-align: center; font-size: 1rem; padding: 13px 24px; }
+      .scroll-down { display: none; }
+
+      /* Tentang */
+      .tentang-wrap { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+      .tentang-text p { font-size: 0.97rem; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .stat-box .num { font-size: 1.8rem; }
+      .big-banana-ring { width: 200px; height: 200px; font-size: 5.5rem; }
+      .floating-tag { display: none; }
+
+      /* Varian */
+      .varian-grid { grid-template-columns: 1fr; gap: 18px; }
+      .varian-emoji { font-size: 3.5rem; }
+
+      /* Kemitraan */
+      .paket-grid { grid-template-columns: 1fr; gap: 20px; }
+      .paket-card:last-child { grid-column: auto; max-width: 100%; }
+
+      /* Form */
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .fg input, .fg select, .fg textarea { font-size: 0.95rem; }
+
+      /* Kontak */
+      .kontak-wrap { grid-template-columns: 1fr; gap: 36px; }
+      .k-icon { width: 48px; height: 48px; font-size: 1.3rem; border-radius: 12px; }
+      .sosmed-row { gap: 8px; }
+      .sos-btn { font-size: 0.85rem; padding: 8px 14px; }
+
+      /* Section typography */
+      .section-title { font-size: 2rem; }
+      .section-pill { font-size: 0.78rem; }
+
+      /* Footer */
+      .footer-links { gap: 14px; }
+      .footer-links a { font-size: 0.82rem; }
+      footer p { font-size: 0.82rem; }
+    }
+
+    /* ─── SMALL MOBILE (max 380px) ─── */
+    @media (max-width: 380px) {
+      .hero-logo { width: 220px; }
+      .hero-tagline { font-size: 0.82rem; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .stat-box .num { font-size: 1.5rem; }
+      .section-title { font-size: 1.7rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="boananalogo.png" alt="BOANANA Logo" />
+  </div>
+  <ul class="nav-links">
+    <li><a href="#tentang">Tentang</a></li>
+    <li><a href="#varian">Varian Rasa</a></li>
+    <li><a href="#kemitraan">Kemitraan</a></li>
+    <li><a href="#kritik">Kritik & Saran</a></li>
+    <li><a href="#kontak">Kontak</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="navDrawer">
+  <a href="#tentang" class="drawer-link">Tentang</a>
+  <a href="#varian" class="drawer-link">Varian Rasa</a>
+  <a href="#kemitraan" class="drawer-link">Kemitraan</a>
+  <a href="#kritik" class="drawer-link">Kritik & Saran</a>
+  <a href="#kontak" class="drawer-link">Kontak</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="shape c1"></div>
+  <div class="shape c2"></div>
+  <div class="shape c3"></div>
+  <div class="shape c4"></div>
+  <div class="hero-inner">
+    <img class="hero-logo" src="boananalogo.png" alt="BOANANA" />
+    <div class="hero-bananas">
+      <span>🍌</span><span>🍌</span><span>🍌</span><span>🍌</span><span>🍌</span>
+    </div>
+    <p class="hero-tagline">🎉 Keripik Pisang Kekinian dari Purwokerto — Segera Hadir!</p>
+    <div class="hero-btns">
+      <a href="#varian" class="btn-main">Intip Varian Rasa 🍌</a>
+      <a href="#kemitraan" class="btn-outline">Jadi Mitra Pertama 🤝</a>
+    </div>
+  </div>
+  <div class="scroll-down">👇</div>
+</section>
+
+<!-- TENTANG -->
+<section id="tentang">
+  <div class="tentang-wrap">
+    <div class="tentang-text reveal">
+      <span class="section-pill">Siapa Kami?</span>
+      <h2 class="section-title">Kenalan Sama<br/>🍌 BOANANA</h2>
+      <p>BOANANA adalah startup kuliner baru dari Purwokerto yang hadir dengan semangat besar dan ide segar! Kami percaya keripik pisang bukan sekadar camilan biasa — dengan sentuhan batik Nusantara yang khas, kami menghadirkan pengalaman ngemil yang unik, renyah, dan kekinian.</p>
+      <p>Kami masih di awal perjalanan, tapi semangat kami sudah 100%! BOANANA siap hadir buat kamu yang suka camilan lokal dengan twist yang berbeda. Stay tuned — ini baru permulaan! 🚀</p>
+      <div class="stats-row">
+        <div class="stat-box reveal">
+          <div class="num">2026</div>
+          <div class="lbl">Tahun Lahir 🐣</div>
+        </div>
+        <div class="stat-box reveal">
+          <div class="num">PWT</div>
+          <div class="lbl">Purwokerto 📍</div>
+        </div>
+        <div class="stat-box reveal">
+          <div class="num">6</div>
+          <div class="lbl">Varian Seru</div>
+        </div>
+        <div class="stat-box reveal">
+          <div class="num">∞</div>
+          <div class="lbl">Semangat Kami 🔥</div>
+        </div>
+      </div>
+    </div>
+    <div class="tentang-visual reveal">
+      <div class="big-banana-ring">
+        <span class="inner-banana">🍌</span>
+      </div>
+      <div class="floating-tag">🚀 Coming Soon!</div>
+      <div class="floating-tag">💡 Startup Lokal</div>
+      <div class="floating-tag">❤️ Made in PWt</div>
+    </div>
+  </div>
+</section>
+
+<!-- VARIAN RASA -->
+<section id="varian">
+  <div class="dots-bg"></div>
+  <div class="varian-header">
+    <span class="section-pill">Menu Kita</span>
+    <h2 class="section-title">6 Varian Rasa yang Bakal Hadir! 🎨</h2>
+    <p style="font-size:1.05rem;color:var(--brown);opacity:0.8;max-width:520px;margin:0 auto;">Ini dia lineup varian rasa yang lagi kami siapkan buat kamu. Mana yang paling bikin kamu penasaran? 👀</p>
+  </div>
+  <div class="varian-grid">
+    <div class="varian-card reveal" style="--vcolor:#6B8E23;">
+      <span class="varian-emoji">🍵</span>
+      <div class="varian-name">Matcha</div>
+      <p class="varian-desc">Bubuk matcha Jepang yang harum melapisi keripik pisang renyah kami. Camilan premium yang beda dari yang lain!</p>
+      <span class="varian-tag" style="background:#6B8E23;">Premium ✨</span>
+    </div>
+    <div class="varian-card reveal" style="--vcolor:#FF69B4;">
+      <span class="varian-emoji">🫧</span>
+      <div class="varian-name">Bubble Gum</div>
+      <p class="varian-desc">Varian paling berani BOANANA! Keripik pisang renyah dengan rasa bubble gum manis — warna cantik, dijamin jadi konten! 📸</p>
+      <span class="varian-tag" style="background:#FF69B4;">Wajib Coba! 🔥</span>
+    </div>
+    <div class="varian-card reveal" style="--vcolor:#5C3317;">
+      <span class="varian-emoji">🍫</span>
+      <div class="varian-name">Coklat</div>
+      <p class="varian-desc">Lapisan coklat premium yang kaya rasa bertemu keripik pisang renyah — kombinasi klasik yang nggak pernah gagal bikin nagih!</p>
+      <span class="varian-tag" style="background:#5C3317;">Favorit Semua 🏆</span>
+    </div>
+    <div class="varian-card reveal" style="--vcolor:#9B59B6;">
+      <span class="varian-emoji">🟣</span>
+      <div class="varian-name">Taro</div>
+      <p class="varian-desc">Balutan rasa talas ungu yang creamy dan manis pada keripik pisang crispy kami. Unik, instagramable, dan pasti nagih!</p>
+      <span class="varian-tag" style="background:#9B59B6;">Penasaran? 💜</span>
+    </div>
+    <div class="varian-card reveal" style="--vcolor:#FFD700;">
+      <span class="varian-emoji">🍌</span>
+      <div class="varian-name">Original</div>
+      <p class="varian-desc">Keripik pisang original kami — renyah, gurih-manis alami, tanpa basa-basi. Simpel tapi selalu jadi yang paling dicinta!</p>
+      <span class="varian-tag" style="background:#E6B800;color:#5C3317;">All Time Fav ❤️</span>
+    </div>
+    <div class="varian-card reveal" style="--vcolor:#E91E63;">
+      <span class="varian-emoji">🍓</span>
+      <div class="varian-name">Strawberry</div>
+      <p class="varian-desc">Taburan rasa strawberry asam-manis yang segar di atas keripik pisang renyah. Cocok banget buat pecinta camilan fruity!</p>
+      <span class="varian-tag" style="background:#E91E63;">Seger Banget 🌸</span>
+    </div>
+  </div>
+</section>
+
+<!-- KEMITRAAN -->
+<section id="kemitraan">
+  <div style="max-width:1100px;margin:0 auto;">
+    <span class="section-pill">Gabung Bareng Kami!</span>
+    <h2 class="section-title">Buka Kemitraan 🤝</h2>
+    <p style="color:var(--cream);opacity:0.8;max-width:600px;font-size:1.05rem;margin-bottom:50px;">BOANANA baru mau launch dan kami sedang mencari mitra-mitra pertama yang berani dan visioner! Jadilah bagian dari perjalanan awal kami — be the first, be the best. 🚀</p>
+
+    <div class="paket-grid">
+      <div class="paket-card reveal">
+        <span class="paket-icon">🛺</span>
+        <div class="paket-name">Paket Starter</div>
+        <div class="paket-price">Coming Soon</div>
+        <ul class="paket-list">
+          <li>1 Unit Gerobak Branded BOANANA</li>
+          <li>Pelatihan Dasar 1 Hari</li>
+          <li>Stok Produk Awal</li>
+          <li>Panduan SOP Lengkap</li>
+          <li>Support via WhatsApp</li>
+        </ul>
+        <a href="#kontak" class="btn-paket">Daftar Minat!</a>
+      </div>
+      <div class="paket-card hot reveal">
+        <div class="hot-badge">⭐ Rekomendasi!</div>
+        <span class="paket-icon">🏪</span>
+        <div class="paket-name">Paket Premium</div>
+        <div class="paket-price">Coming Soon</div>
+        <ul class="paket-list">
+          <li>1 Unit Booth Modern Full Branding</li>
+          <li>Pelatihan Intensif 3 Hari</li>
+          <li>Stok Produk Lebih Banyak</li>
+          <li>Mesin Goreng Elektrik</li>
+          <li>Konten Promosi Media Sosial</li>
+          <li>Pendampingan 3 Bulan</li>
+        </ul>
+        <a href="#kontak" class="btn-paket">Daftar Minat!</a>
+      </div>
+      <div class="paket-card reveal">
+        <span class="paket-icon">🏬</span>
+        <div class="paket-name">Paket Franchise</div>
+        <div class="paket-price">Coming Soon</div>
+        <ul class="paket-list">
+          <li>Toko Mini Permanen</li>
+          <li>Training Lengkap + Sertifikat</li>
+          <li>Stok Produk Penuh</li>
+          <li>Hak Wilayah Eksklusif</li>
+          <li>Dukungan Marketing Penuh</li>
+          <li>Pendampingan 1 Tahun Penuh</li>
+        </ul>
+        <a href="#kontak" class="btn-paket">Daftar Minat!</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KRITIK & SARAN -->
+<section id="kritik">
+  <div class="kritik-wrap">
+    <span class="section-pill">Suara Kamu!</span>
+    <h2 class="section-title">Kritik & Saran 💬</h2>
+    <p style="color:#666;margin-bottom:36px;font-size:1.05rem;">Kami masih baru dan masukan kamu sangat berharga banget! Bantu kami hadir dengan produk terbaik untuk Purwokerto dan sekitarnya. 🍌</p>
+
+    <form id="feedbackForm">
+      <div class="form-row">
+        <div class="fg">
+          <label>Nama Kamu</label>
+          <input type="text" placeholder="Nama kamu..." required />
+        </div>
+        <div class="fg">
+          <label>Email</label>
+          <input type="email" placeholder="email@kamu.com" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="fg">
+          <label>Varian yang Dicoba</label>
+          <select>
+            <option value="">Pilih varian...</option>
+            <option>Matcha</option>
+            <option>Bubble Gum</option>
+            <option>Coklat</option>
+            <option>Taro</option>
+            <option>Original</option>
+            <option>Strawberry</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Jenis Masukan</label>
+          <select>
+            <option>Kritik</option>
+            <option>Saran</option>
+            <option>Pujian 🎉</option>
+            <option>Pertanyaan</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg">
+        <label>Rating Kamu ⭐</label>
+        <div class="star-row">
+          <input type="radio" id="s5" name="rating" value="5" /><label for="s5">⭐</label>
+          <input type="radio" id="s4" name="rating" value="4" /><label for="s4">⭐</label>
+          <input type="radio" id="s3" name="rating" value="3" /><label for="s3">⭐</label>
+          <input type="radio" id="s2" name="rating" value="2" /><label for="s2">⭐</label>
+          <input type="radio" id="s1" name="rating" value="1" /><label for="s1">⭐</label>
+        </div>
+      </div>
+      <div class="fg">
+        <label>Pesan Kamu</label>
+        <textarea placeholder="Ceritain pengalaman atau saran kamu di sini..."></textarea>
+      </div>
+      <button type="submit" class="btn-send">Kirim Masukan 🍌</button>
+      <div class="toast" id="toast">🎉 Yeay! Makasih banyak! Masukan kamu udah kami terima dan sangat berarti buat BOANANA!</div>
+    </form>
+  </div>
+</section>
+
+<!-- KONTAK -->
+<section id="kontak">
+  <div class="kontak-wrap">
+    <div>
+      <span class="section-pill">Hubungi Kami</span>
+      <h2 class="section-title">Yuk Ngobrol! 📱</h2>
+      <p style="color:var(--brown);opacity:0.75;margin-bottom:30px;font-size:1.05rem;">Punya pertanyaan, ingin jadi mitra pertama, atau sekadar penasaran? Hubungi kami kapan saja — kami senang banget diajak ngobrol! 😊</p>
+
+      <div class="kontak-item reveal">
+        <div class="k-icon">📍</div>
+        <div class="k-text">
+          <strong>Lokasi</strong>
+          <p>Purwokerto, Jawa Tengah</p>
+        </div>
+      </div>
+      <div class="kontak-item reveal">
+        <div class="k-icon">📱</div>
+        <div class="k-text">
+          <strong>WhatsApp</strong>
+          <p>+62 812-BOANANA</p>
+        </div>
+      </div>
+      <div class="kontak-item reveal">
+        <div class="k-icon">📧</div>
+        <div class="k-text">
+          <strong>Email</strong>
+          <p>halo@boanana.id</p>
+        </div>
+      </div>
+      <div class="kontak-item reveal">
+        <div class="k-icon">🚀</div>
+        <div class="k-text">
+          <strong>Status</strong>
+          <p>Segera Hadir di Purwokerto!</p>
+        </div>
+      </div>
+
+      <div class="sosmed-row">
+        <a href="#" class="sos-btn">📸 Instagram</a>
+        <a href="#" class="sos-btn">🎵 TikTok</a>
+        <a href="#" class="sos-btn">💬 WhatsApp</a>
+        <a href="#" class="sos-btn">▶️ YouTube</a>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <form class="kontak-form" id="kontakForm">
+        <input type="text" placeholder="Nama Lengkap" required />
+        <input type="email" placeholder="Alamat Email" required />
+        <input type="tel" placeholder="Nomor WhatsApp" />
+        <textarea placeholder="Pesan kamu..."></textarea>
+        <button type="submit" class="btn-kontak-send">Kirim Pesan 🍌</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <img src="/mnt/user-data/uploads/Gemini_Generated_Image_llwte2llwte2llwt-removebg-preview.png" alt="BOANANA" />
+  <div class="footer-links">
+    <a href="#tentang">Tentang</a>
+    <a href="#varian">Varian Rasa</a>
+    <a href="#kemitraan">Kemitraan</a>
+    <a href="#kritik">Kritik & Saran</a>
+    <a href="#kontak">Kontak</a>
+  </div>
+  <p>🍌 Startup Keripik Pisang Kekinian · Lahir & Besar di Purwokerto</p>
+  <p style="margin-top:8px;">© 2025 BOANANA. All rights reserved.</p>
+</footer>
+
+<script>
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const navDrawer = document.getElementById('navDrawer');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navDrawer.classList.toggle('open');
+  });
+  // Close drawer when link clicked
+  document.querySelectorAll('.drawer-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      navDrawer.classList.remove('open');
+    });
+  });
+  // Close drawer on outside click
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !navDrawer.contains(e.target)) {
+      hamburger.classList.remove('open');
+      navDrawer.classList.remove('open');
+    }
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Nav active highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+      a.style.background = a.getAttribute('href') === '#' + current ? 'var(--yellow)' : '';
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--brown)' : '';
+    });
+  });
+
+  // Feedback form
+  document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const toast = document.getElementById('toast');
+    toast.style.display = 'block';
+    this.reset();
+    setTimeout(() => { toast.style.display = 'none'; }, 5000);
+  });
+
+  // Kontak form
+  document.getElementById('kontakForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('button');
+    const orig = btn.textContent;
+    btn.textContent = '✅ Pesan Terkirim!';
+    btn.style.background = '#00C9A7';
+    this.reset();
+    setTimeout(() => {
+      btn.textContent = orig;
+      btn.style.background = '';
+    }, 4000);
+  });
+
+  // Parallax on hero circles
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    document.querySelectorAll('#hero .shape').forEach((s, i) => {
+      s.style.transform = `translateY(${y * (0.1 + i * 0.05)}px)`;
+    });
+  });
+</script>
+</body>
+</html>
