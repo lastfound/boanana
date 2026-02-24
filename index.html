@@ -276,6 +276,8 @@
       grid-template-columns: 1fr 1fr;
       gap: 60px;
       align-items: center;
+      position: relative;
+      z-index: 1;
     }
 
     .tentang-text p {
@@ -469,7 +471,8 @@
     }
 
     #kemitraan .section-pill { background: var(--yellow); color: var(--brown); }
-    #kemitraan .section-title { color: var(--yellow); }
+    #kemitraan .section-title { color: var(--yellow); display: block; }
+    #kemitraan .section-title::after { background: var(--yellow); }
     #kemitraan > p { color: var(--cream); opacity: 0.8; max-width: 600px; font-size: 1.05rem; margin-bottom: 50px; }
 
     .paket-grid {
@@ -809,15 +812,149 @@
     }
     .footer-links a:hover { opacity: 1; }
 
-    /* ─── REVEAL ─── */
+    /* ─── SCROLL ANIMATION SYSTEM ─── */
+
+    /* Base - fade up (default) */
     .reveal {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transform: translateY(50px);
+      transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
     }
-    .reveal.visible {
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Slide from left */
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-70px);
+      transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+    /* Slide from right */
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(70px);
+      transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* Pop / zoom in */
+    .reveal-pop {
+      opacity: 0;
+      transform: scale(0.6) rotate(-4deg);
+      transition: opacity 0.6s cubic-bezier(0.34,1.56,0.64,1), transform 0.6s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .reveal-pop.visible { opacity: 1; transform: scale(1) rotate(0deg); }
+
+    /* Stagger delay helpers */
+    .delay-1 { transition-delay: 0.1s !important; }
+    .delay-2 { transition-delay: 0.2s !important; }
+    .delay-3 { transition-delay: 0.3s !important; }
+    .delay-4 { transition-delay: 0.4s !important; }
+    .delay-5 { transition-delay: 0.5s !important; }
+    .delay-6 { transition-delay: 0.6s !important; }
+
+    /* ─── SECTION TITLE UNDERLINE SWEEP ─── */
+    /* ─── SECTION TITLE UNDERLINE SWEEP ─── */
+    .section-title {
+      position: relative;
+      display: block;
+    }
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -6px; left: 0;
+      width: 0; height: 4px;
+      background: var(--brown);
+      border-radius: 4px;
+      transition: width 0.9s cubic-bezier(0.22,1,0.36,1) 0.3s;
+    }
+    .section-title.visible::after { width: 60px; }
+
+    /* ─── PARALLAX BG TEXT ─── */
+    .parallax-text {
+      position: absolute;
+      font-family: 'Fredoka One', cursive;
+      font-size: 14vw;
+      color: rgba(255,255,255,0.055);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      will-change: transform;
+      letter-spacing: -3px;
+      top: 50%; transform: translateY(-50%);
+      z-index: 0;
+    }
+
+    /* ─── WAVE DIVIDERS ─── */
+    .wave-wrap {
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      margin-bottom: -3px;
+    }
+    .wave-wrap svg { display: block; width: 100%; }
+
+    /* ─── SCROLL PROGRESS BAR ─── */
+    #scrollProgress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 5px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--brown), var(--brown-light), var(--yellow2));
+      z-index: 9999;
+      border-radius: 0 4px 4px 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    /* ─── SECTION PILL POP ─── */
+    .section-pill {
+      display: inline-block;
+      opacity: 0;
+      transform: scale(0.5) rotate(-8deg);
+      transition: opacity 0.5s cubic-bezier(0.34,1.56,0.64,1), transform 0.5s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .section-pill.visible {
       opacity: 1;
-      transform: translateY(0);
+      transform: scale(1) rotate(0deg);
+    }
+
+    /* ─── VARIAN CARD HOVER ─── */
+    .varian-card { transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1) !important; }
+    .varian-card:hover .varian-emoji { transform: scale(1.4) rotate(12deg) !important; animation: none !important; }
+
+    /* ─── KONTAK ITEM HOVER ─── */
+    .kontak-item { transition: transform 0.3s ease; }
+    .kontak-item:hover { transform: translateX(10px); }
+
+    /* ─── STAT BOX COUNT BOUNCE ─── */
+    @keyframes countBounce {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.25); }
+      70% { transform: scale(0.95); }
+      100% { transform: scale(1); }
+    }
+    .stat-box.visible .num { animation: countBounce 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+
+    /* ─── PAKET CARD GLOW ON ENTER ─── */
+    @keyframes glowIn {
+      0%   { box-shadow: 6px 6px 0 rgba(0,0,0,0.2); }
+      50%  { box-shadow: 6px 6px 0 rgba(0,0,0,0.2), 0 0 40px rgba(255,224,53,0.5); }
+      100% { box-shadow: 6px 6px 0 rgba(0,0,0,0.2); }
+    }
+    .paket-card.visible { animation: glowIn 1.2s ease 0.3s both; }
+
+    /* ─── FLOATING BANANA ON CLICK ─── */
+    .banana-pop {
+      position: fixed;
+      pointer-events: none;
+      font-size: 2rem;
+      z-index: 9998;
+      animation: bananaPop 1s ease forwards;
+    }
+    @keyframes bananaPop {
+      0%   { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+      100% { opacity: 0; transform: translateY(-100px) scale(0.3) rotate(40deg); }
     }
 
     /* ─── HAMBURGER MENU ─── */
@@ -983,6 +1120,7 @@
   </style>
 </head>
 <body>
+<div id="scrollProgress"></div>
 
 <!-- NAV -->
 <nav>
@@ -1030,10 +1168,18 @@
   <div class="scroll-down">👇</div>
 </section>
 
+<!-- WAVE: hero -> tentang -->
+<div class="wave-wrap" style="background:linear-gradient(160deg,#FFE135 0%,#FFD000 60%,#FFC200 100%);">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#FFF9EC"/>
+  </svg>
+</div>
+
 <!-- TENTANG -->
-<section id="tentang">
+<section id="tentang" style="overflow:hidden;position:relative;">
+  <div class="parallax-text" id="parallaxTentang">BOANANA</div>
   <div class="tentang-wrap">
-    <div class="tentang-text reveal">
+    <div class="tentang-text reveal-left">
       <span class="section-pill">Siapa Kami?</span>
       <h2 class="section-title">Kenalan Sama<br/>🍌 BOANANA</h2>
       <p>BOANANA adalah startup kuliner baru dari Purwokerto yang hadir dengan semangat besar dan ide segar! Kami percaya keripik pisang bukan sekadar camilan biasa — dengan sentuhan batik Nusantara yang khas, kami menghadirkan pengalaman ngemil yang unik, renyah, dan kekinian.</p>
@@ -1057,7 +1203,7 @@
         </div>
       </div>
     </div>
-    <div class="tentang-visual reveal">
+    <div class="tentang-visual reveal-right">
       <div class="big-banana-ring">
         <span class="inner-banana">🍌</span>
       </div>
@@ -1068,8 +1214,16 @@
   </div>
 </section>
 
+<!-- WAVE: tentang -> varian -->
+<div class="wave-wrap" style="background:#FFF9EC;">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0 C480,60 960,0 1440,40 L1440,60 L0,60 Z" fill="#FFE135"/>
+  </svg>
+</div>
+
 <!-- VARIAN RASA -->
-<section id="varian">
+<section id="varian" style="overflow:hidden;position:relative;">
+  <div class="parallax-text" id="parallaxVarian" style="color:rgba(0,0,0,0.04);">RASA RASA RASA</div>
   <div class="dots-bg"></div>
   <div class="varian-header">
     <span class="section-pill">Menu Kita</span>
@@ -1077,37 +1231,37 @@
     <p style="font-size:1.05rem;color:var(--brown);opacity:0.8;max-width:520px;margin:0 auto;">Ini dia lineup varian rasa yang lagi kami siapkan buat kamu. Mana yang paling bikin kamu penasaran? 👀</p>
   </div>
   <div class="varian-grid">
-    <div class="varian-card reveal" style="--vcolor:#6B8E23;">
+    <div class="varian-card reveal-pop delay-1" style="--vcolor:#6B8E23;">
       <span class="varian-emoji">🍵</span>
       <div class="varian-name">Matcha</div>
       <p class="varian-desc">Bubuk matcha Jepang yang harum melapisi keripik pisang renyah kami. Camilan premium yang beda dari yang lain!</p>
       <span class="varian-tag" style="background:#6B8E23;">Premium ✨</span>
     </div>
-    <div class="varian-card reveal" style="--vcolor:#FF69B4;">
+    <div class="varian-card reveal-pop delay-2" style="--vcolor:#FF69B4;">
       <span class="varian-emoji">🫧</span>
       <div class="varian-name">Bubble Gum</div>
       <p class="varian-desc">Varian paling berani BOANANA! Keripik pisang renyah dengan rasa bubble gum manis — warna cantik, dijamin jadi konten! 📸</p>
       <span class="varian-tag" style="background:#FF69B4;">Wajib Coba! 🔥</span>
     </div>
-    <div class="varian-card reveal" style="--vcolor:#5C3317;">
+    <div class="varian-card reveal-pop delay-3" style="--vcolor:#5C3317;">
       <span class="varian-emoji">🍫</span>
       <div class="varian-name">Coklat</div>
       <p class="varian-desc">Lapisan coklat premium yang kaya rasa bertemu keripik pisang renyah — kombinasi klasik yang nggak pernah gagal bikin nagih!</p>
       <span class="varian-tag" style="background:#5C3317;">Favorit Semua 🏆</span>
     </div>
-    <div class="varian-card reveal" style="--vcolor:#9B59B6;">
+    <div class="varian-card reveal-pop delay-4" style="--vcolor:#9B59B6;">
       <span class="varian-emoji">🟣</span>
       <div class="varian-name">Taro</div>
       <p class="varian-desc">Balutan rasa talas ungu yang creamy dan manis pada keripik pisang crispy kami. Unik, instagramable, dan pasti nagih!</p>
       <span class="varian-tag" style="background:#9B59B6;">Penasaran? 💜</span>
     </div>
-    <div class="varian-card reveal" style="--vcolor:#FFD700;">
+    <div class="varian-card reveal-pop delay-5" style="--vcolor:#FFD700;">
       <span class="varian-emoji">🍌</span>
       <div class="varian-name">Original</div>
       <p class="varian-desc">Keripik pisang original kami — renyah, gurih-manis alami, tanpa basa-basi. Simpel tapi selalu jadi yang paling dicinta!</p>
       <span class="varian-tag" style="background:#E6B800;color:#5C3317;">All Time Fav ❤️</span>
     </div>
-    <div class="varian-card reveal" style="--vcolor:#E91E63;">
+    <div class="varian-card reveal-pop delay-6" style="--vcolor:#E91E63;">
       <span class="varian-emoji">🍓</span>
       <div class="varian-name">Strawberry</div>
       <p class="varian-desc">Taburan rasa strawberry asam-manis yang segar di atas keripik pisang renyah. Cocok banget buat pecinta camilan fruity!</p>
@@ -1115,6 +1269,13 @@
     </div>
   </div>
 </section>
+
+<!-- WAVE: varian -> kemitraan -->
+<div class="wave-wrap" style="background:#FFE135;">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,40 C360,0 1080,60 1440,20 L1440,60 L0,60 Z" fill="#7B3F00"/>
+  </svg>
+</div>
 
 <!-- KEMITRAAN -->
 <section id="kemitraan">
@@ -1124,7 +1285,7 @@
     <p style="color:var(--cream);opacity:0.8;max-width:600px;font-size:1.05rem;margin-bottom:50px;">BOANANA baru mau launch dan kami sedang mencari mitra-mitra pertama yang berani dan visioner! Jadilah bagian dari perjalanan awal kami — be the first, be the best. 🚀</p>
 
     <div class="paket-grid">
-      <div class="paket-card reveal">
+      <div class="paket-card reveal-left delay-1">
         <span class="paket-icon">🛺</span>
         <div class="paket-name">Paket Starter</div>
         <div class="paket-price">Coming Soon</div>
@@ -1137,7 +1298,7 @@
         </ul>
         <a href="#kontak" class="btn-paket">Daftar Minat!</a>
       </div>
-      <div class="paket-card hot reveal">
+      <div class="paket-card hot reveal delay-2">
         <div class="hot-badge">⭐ Rekomendasi!</div>
         <span class="paket-icon">🏪</span>
         <div class="paket-name">Paket Premium</div>
@@ -1152,7 +1313,7 @@
         </ul>
         <a href="#kontak" class="btn-paket">Daftar Minat!</a>
       </div>
-      <div class="paket-card reveal">
+      <div class="paket-card reveal-right delay-3">
         <span class="paket-icon">🏬</span>
         <div class="paket-name">Paket Franchise</div>
         <div class="paket-price">Coming Soon</div>
@@ -1169,6 +1330,13 @@
     </div>
   </div>
 </section>
+
+<!-- WAVE: kemitraan -> kritik -->
+<div class="wave-wrap" style="background:#7B3F00;">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,20 C480,60 960,0 1440,40 L1440,60 L0,60 Z" fill="#FFF9EC"/>
+  </svg>
+</div>
 
 <!-- KRITIK & SARAN -->
 <section id="kritik">
@@ -1231,6 +1399,13 @@
   </div>
 </section>
 
+<!-- WAVE: kritik -> kontak -->
+<div class="wave-wrap" style="background:#FFF9EC;">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,50 C360,0 1080,60 1440,10 L1440,60 L0,60 Z" fill="#FFD000"/>
+  </svg>
+</div>
+
 <!-- KONTAK -->
 <section id="kontak">
   <div class="kontak-wrap">
@@ -1257,7 +1432,7 @@
         <div class="k-icon">📧</div>
         <div class="k-text">
           <strong>Email</strong>
-          <p>halo@boanana.id</p>
+          <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b9d1d8d5d6f9dbd6d8d7d8d7d897d0dd">[email&#160;protected]</a></p>
         </div>
       </div>
       <div class="kontak-item reveal">
@@ -1302,84 +1477,167 @@
   <p style="margin-top:8px;">© 2025 BOANANA. All rights reserved.</p>
 </footer>
 
-<script>
-  // Hamburger menu
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ─── SCROLL PROGRESS BAR ───
+  const progressBar = document.getElementById('scrollProgress');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.width = (scrollTop / docHeight * 100) + '%';
+  });
+
+  // ─── HAMBURGER MENU ───
   const hamburger = document.getElementById('hamburger');
   const navDrawer = document.getElementById('navDrawer');
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    navDrawer.classList.toggle('open');
-  });
-  // Close drawer when link clicked
-  document.querySelectorAll('.drawer-link').forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('open');
-      navDrawer.classList.remove('open');
+  if (hamburger) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navDrawer.classList.toggle('open');
     });
-  });
-  // Close drawer on outside click
-  document.addEventListener('click', (e) => {
-    if (!hamburger.contains(e.target) && !navDrawer.contains(e.target)) {
-      hamburger.classList.remove('open');
-      navDrawer.classList.remove('open');
-    }
-  });
-
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
+    document.querySelectorAll('.drawer-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navDrawer.classList.remove('open');
+      });
+    });
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !navDrawer.contains(e.target)) {
+        hamburger.classList.remove('open');
+        navDrawer.classList.remove('open');
       }
     });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
+  }
 
-  // Nav active highlight
+  // ─── UNIVERSAL SCROLL REVEAL ───
+  const allReveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-pop, .section-pill, .section-title');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const delay = parseFloat(getComputedStyle(el).transitionDelay) * 1000 || 0;
+        setTimeout(() => el.classList.add('visible'), i * 60);
+        revealObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.12 });
+  allReveals.forEach(el => revealObserver.observe(el));
+
+  // ─── STAT BOX NUMBER COUNT-UP ───
+  function countUp(el, target, suffix) {
+    let current = 0;
+    const isInfinity = target === '∞';
+    if (isInfinity) { el.textContent = '∞'; return; }
+    const isText = isNaN(parseInt(target));
+    if (isText) { el.textContent = target; return; }
+    const num = parseInt(target.replace(/\D/g, ''));
+    const hasSuffix = target.replace(/[0-9]/g, '').trim();
+    const duration = 1000;
+    const steps = 40;
+    const increment = num / steps;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= num) {
+        el.textContent = target;
+        clearInterval(timer);
+      } else {
+        el.textContent = Math.floor(current) + (hasSuffix || '');
+      }
+    }, duration / steps);
+  }
+
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const numEl = entry.target.querySelector('.num');
+        if (numEl && !numEl.dataset.counted) {
+          numEl.dataset.counted = '1';
+          const original = numEl.textContent.trim();
+          numEl.textContent = '0';
+          setTimeout(() => countUp(numEl, original, ''), 300);
+        }
+        statObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stat-box').forEach(el => statObserver.observe(el));
+
+  // ─── PARALLAX BG TEXT ───
+  const parallaxEls = [
+    { el: document.getElementById('parallaxTentang'), speed: 0.3 },
+    { el: document.getElementById('parallaxVarian'),  speed: 0.2 },
+  ];
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    parallaxEls.forEach(({ el, speed }) => {
+      if (!el) return;
+      const rect = el.parentElement.getBoundingClientRect();
+      const offset = (window.innerHeight / 2 - rect.top) * speed;
+      el.style.transform = `translateY(calc(-50% + ${offset}px))`;
+    });
+  });
+
+  // ─── NAV ACTIVE HIGHLIGHT ───
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id');
+      if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id');
     });
     navLinks.forEach(a => {
-      a.style.background = a.getAttribute('href') === '#' + current ? 'var(--yellow)' : '';
-      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--brown)' : '';
+      const isActive = a.getAttribute('href') === '#' + current;
+      a.style.background = isActive ? 'var(--brown)' : '';
+      a.style.color = isActive ? 'var(--yellow)' : '';
     });
   });
 
-  // Feedback form
-  document.getElementById('feedbackForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const toast = document.getElementById('toast');
-    toast.style.display = 'block';
-    this.reset();
-    setTimeout(() => { toast.style.display = 'none'; }, 5000);
-  });
-
-  // Kontak form
-  document.getElementById('kontakForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const btn = this.querySelector('button');
-    const orig = btn.textContent;
-    btn.textContent = '✅ Pesan Terkirim!';
-    btn.style.background = '#00C9A7';
-    this.reset();
-    setTimeout(() => {
-      btn.textContent = orig;
-      btn.style.background = '';
-    }, 4000);
-  });
-
-  // Parallax on hero circles
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    document.querySelectorAll('#hero .shape').forEach((s, i) => {
-      s.style.transform = `translateY(${y * (0.1 + i * 0.05)}px)`;
+  // ─── FEEDBACK FORM ───
+  const feedbackForm = document.getElementById('feedbackForm');
+  if (feedbackForm) {
+    feedbackForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const toast = document.getElementById('toast');
+      if (toast) { toast.style.display = 'block'; }
+      this.reset();
+      setTimeout(() => { if (toast) toast.style.display = 'none'; }, 5000);
+      spawnBanana(window.innerWidth / 2, window.innerHeight / 2);
     });
+  }
+
+  // ─── KONTAK FORM ───
+  const kontakForm = document.getElementById('kontakForm');
+  if (kontakForm) {
+    kontakForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('button');
+      const orig = btn.textContent;
+      btn.textContent = '✅ Pesan Terkirim!';
+      btn.style.background = '#00C9A7';
+      this.reset();
+      spawnBanana(window.innerWidth / 2, window.innerHeight / 2);
+      setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 4000);
+    });
+  }
+
+  // ─── FLOATING BANANA ON CLICK ───
+  function spawnBanana(x, y) {
+    for (let i = 0; i < 5; i++) {
+      const b = document.createElement('div');
+      b.className = 'banana-pop';
+      b.textContent = '🍌';
+      b.style.left = (x + (Math.random() - 0.5) * 80) + 'px';
+      b.style.top = (y + (Math.random() - 0.5) * 40) + 'px';
+      b.style.animationDelay = (i * 0.1) + 's';
+      b.style.fontSize = (1.2 + Math.random()) + 'rem';
+      document.body.appendChild(b);
+      setTimeout(() => b.remove(), 1200);
+    }
+  }
+  document.addEventListener('click', (e) => {
+    // Only spawn on buttons and cards
+    if (e.target.closest('.btn-main, .btn-outline, .btn-paket, .btn-kontak-send, .btn-send, .varian-card')) {
+      spawnBanana(e.clientX, e.clientY);
+    }
   });
 </script>
 </body>
