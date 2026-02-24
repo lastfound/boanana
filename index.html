@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="only light" />
+  <meta name="supported-color-schemes" content="light" />
   <title>BOANANA – Keripik Pisang Kekinian dari Purwokerto</title>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
@@ -21,7 +23,10 @@
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      color-scheme: only light;
+    }
 
     body {
       font-family: 'Nunito', sans-serif;
@@ -30,7 +35,30 @@
       overflow-x: hidden;
     }
 
-    /* DOTS PATTERN BG */
+    /* ─── FORCE LIGHT MODE – BLOCK DARK MODE ─── */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --yellow: #FFE135 !important;
+        --yellow2: #FFD000 !important;
+        --brown: #7B3F00 !important;
+        --brown-light: #C47A2B !important;
+        --cream: #FFF9EC !important;
+        --pink: #FF6B9D !important;
+        --mint: #00C9A7 !important;
+        --purple: #9B59B6 !important;
+        --taro: #B39DDB !important;
+        --dark: #2C1A00 !important;
+        --white: #FFFFFF !important;
+      }
+      html, body {
+        background: #FFE135 !important;
+        color: #2C1A00 !important;
+      }
+      input, select, textarea, button {
+        background-color: white !important;
+        color: #2C1A00 !important;
+      }
+    }
     .dots-bg {
       background-image: radial-gradient(circle, rgba(0,0,0,0.07) 1px, transparent 1px);
       background-size: 24px 24px;
@@ -1432,7 +1460,7 @@
         <div class="k-icon">📧</div>
         <div class="k-text">
           <strong>Email</strong>
-          <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b9d1d8d5d6f9dbd6d8d7d8d7d897d0dd"></a>Halo.Boanana@gmail.com</p>
+          <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b9d1d8d5d6f9dbd6d8d7d8d7d897d0dd">[email&#160;protected]</a></p>
         </div>
       </div>
       <div class="kontak-item reveal">
@@ -1465,7 +1493,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <img src="boananalogo.png" alt="BOANANA" />
+  <img src="/mnt/user-data/uploads/Gemini_Generated_Image_llwte2llwte2llwt-removebg-preview.png" alt="BOANANA" />
   <div class="footer-links">
     <a href="#tentang">Tentang</a>
     <a href="#varian">Varian Rasa</a>
