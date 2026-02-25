@@ -56,7 +56,8 @@
       #tentang { background: #FFF9EC !important; }
       .tentang-text p { color: #555555 !important; }
       .section-title { color: #7B3F00 !important; }
-      .section-pill { background: #FFE135 !important; color: #7B3F00 !important; }
+      .section-pill { background: #7B3F00 !important; color: #FFE135 !important; }
+      .section-pill2 {background:#FFE135 !important; color: #7B3F00 !important }
       .stat-box { background: #FFE135 !important; border-color: #7B3F00 !important; }
       .stat-box .num { color: #7B3F00 !important; }
       .stat-box .lbl { color: #7B3F00 !important; }
@@ -80,6 +81,7 @@
       .btn-send { background: #7B3F00 !important; color: #FFE135 !important; }
       #kontak { background: #FFD000 !important; }
       .section-title { color: #7B3F00 !important; }
+      .section-title2 {color: #FFD000 }
       .k-text strong { color: #7B3F00 !important; }
       .k-text p { color: #7B3F00 !important; }
       .k-icon { background: #7B3F00 !important; }
@@ -184,7 +186,7 @@
     }
 
     .hero-logo {
-      width: min(200px, 80vw);
+      width: min(300px, 80vw);
       animation: heroPop 0.8s cubic-bezier(0.34,1.56,0.64,1) forwards;
       filter: drop-shadow(0 12px 30px rgba(123,63,0,0.3));
     }
@@ -305,6 +307,19 @@
       display: inline-block;
       background: var(--brown);
       color: var(--yellow);
+      font-family: 'Fredoka One', cursive;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 20px;
+      border-radius: 50px;
+      margin-bottom: 12px;
+    }
+
+    .section-pill2 {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--brown);
       font-family: 'Fredoka One', cursive;
       font-size: 0.85rem;
       letter-spacing: 2px;
@@ -451,8 +466,8 @@
     .varian-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 28px;
-      max-width: 1200px;
+      gap: 30px;
+      max-width: 1000px;
       margin: 0 auto;
       position: relative;
       z-index: 2;
@@ -1339,8 +1354,8 @@
 <!-- KEMITRAAN -->
 <section id="kemitraan">
   <div style="max-width:1100px;margin:0 auto;">
-    <span class="section-pill">Gabung Bareng Kami!</span>
-    <h2 class="section-title">Buka Kemitraan 🤝</h2>
+    <span class="section-pill2">Gabung Bareng Kami!</span>
+    <h2 class="section-title2">Buka Kemitraan 🤝</h2>
     <p style="color:var(--cream);opacity:0.8;max-width:600px;font-size:1.05rem;margin-bottom:50px;">BOANANA baru mau launch dan kami sedang mencari mitra-mitra pertama yang berani dan visioner! Jadilah bagian dari perjalanan awal kami — be the first, be the best. 🚀</p>
 
     <div class="paket-grid">
@@ -1524,7 +1539,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <img src="/mnt/user-data/uploads/Gemini_Generated_Image_llwte2llwte2llwt-removebg-preview.png" alt="BOANANA" />
+  <img src="boananalogo.png" alt="BOANANA" />
   <div class="footer-links">
     <a href="#tentang">Tentang</a>
     <a href="#varian">Varian Rasa</a>
