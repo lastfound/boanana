@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="light" />
   <meta name="supported-color-schemes" content="light" />
-  <!-- Force light mode before any rendering -->
+  
   <style>
     :root { color-scheme: light !important; }
     html, body { background: #FFE135 !important; }
@@ -40,11 +40,11 @@
       overflow-x: hidden;
     }
 
-    /* ─── FORCE LIGHT MODE – NUCLEAR OPTION ─── */
+    /* biar mode terang*/
     @media (prefers-color-scheme: dark) {
       html, body { background: #FFE135 !important; color: #2C1A00 !important; }
       nav { background: #7B3F00 !important; box-shadow: 0 4px 0 #FFD000, 0 8px 20px rgba(0,0,0,0.15) !important; }
-      .nav-links a { color: #FFE135 !important; }
+      .nav-links a { color: #FFE135; }
       .nav-links a:hover { background: #FFE135 !important; color: #7B3F00!important; }
       .nav-drawer { background: #7B3F00 !important; }
       .nav-drawer a { color: #FFE135 !important; }
@@ -97,12 +97,12 @@
       background-size: 24px 24px;
     }
 
-    /* ─── SCROLLBAR ─── */
+    /*Scrolbar */
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: var(--yellow2); }
     ::-webkit-scrollbar-thumb { background: var(--brown); border-radius: 10px; }
 
-    /* ─── FLOATING SHAPES ─── */
+    /* bulat melayangS*/
     .shape {
       position: absolute;
       border-radius: 50%;
@@ -110,7 +110,7 @@
       z-index: 0;
     }
 
-    /* ─── NAV ─── */
+    /*Navigasi*/
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -148,12 +148,23 @@
       border-radius: 50px;
       transition: all 0.25s;
     }
+     .nav-links1 a {
+      color: var(--brown);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 50px;
+      transition: all 0.25s;
+    }
     .nav-links a:hover {
       background: var(--yellow);
       color: var(--brown);
     }
 
-    /* ─── HERO ─── */
+    /*hero*/
     #hero {
       min-height: 100vh;
       display: flex;
@@ -300,7 +311,7 @@
       50% { transform: translateX(-50%) translateY(10px); }
     }
 
-    /* ─── SECTION BASE ─── */
+    /* section dasar*/
     section { padding: 90px 5vw; position: relative; }
 
     .section-pill {
@@ -337,7 +348,7 @@
       margin-bottom: 16px;
     }
 
-    /* ─── TENTANG ─── */
+    /*tentang*/
     #tentang {
       background: var(--cream);
       overflow: hidden;
@@ -446,7 +457,7 @@
       50% { transform: translateY(-8px); }
     }
 
-    /* ─── VARIAN ─── */
+    /*varian*/
     #varian {
       background: var(--yellow);
     }
@@ -538,7 +549,7 @@
       color: white;
     }
 
-    /* ─── KEMITRAAN ─── */
+    /*kemitraan*/
     #kemitraan {
       background: var(--brown);
       overflow: hidden;
@@ -638,7 +649,7 @@
       box-shadow: 5px 5px 0 var(--dark);
     }
 
-    /* ─── KRITIK & SARAN ─── */
+    /* kritik dn saran */
     #kritik {
       background: var(--cream);
     }
@@ -742,7 +753,7 @@
       box-shadow: 4px 4px 0 #00a085;
     }
 
-    /* ─── KONTAK ─── */
+    /*kontak*/
     #kontak {
       background: var(--yellow2);
     }
@@ -852,7 +863,7 @@
       box-shadow: 6px 6px 0 var(--dark);
     }
 
-    /* ─── FOOTER ─── */
+    /*footer*/
     footer {
       background: var(--dark);
       color: var(--cream);
@@ -886,9 +897,9 @@
     }
     .footer-links a:hover { opacity: 1; }
 
-    /* ─── SCROLL ANIMATION SYSTEM ─── */
+    /*---sistem animasi saat scrool---*/
 
-    /* Base - fade up (default) */
+    /* aniamsi dasar - fade up  */
     .reveal {
       opacity: 0;
       transform: translateY(50px);
@@ -896,7 +907,7 @@
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* Slide from left */
+    /* slide dari sebelah kiri*/
     .reveal-left {
       opacity: 0;
       transform: translateX(-70px);
@@ -904,7 +915,7 @@
     }
     .reveal-left.visible { opacity: 1; transform: translateX(0); }
 
-    /* Slide from right */
+    /* slide dari kanan */
     .reveal-right {
       opacity: 0;
       transform: translateX(70px);
@@ -912,7 +923,7 @@
     }
     .reveal-right.visible { opacity: 1; transform: translateX(0); }
 
-    /* Pop / zoom in */
+    /* menggede mengcil*/
     .reveal-pop {
       opacity: 0;
       transform: scale(0.6) rotate(-4deg);
@@ -960,7 +971,7 @@
       z-index: 0;
     }
 
-    /* ─── WAVE DIVIDERS ─── */
+    /*garis ombak per section */
     .wave-wrap {
       width: 100%;
       overflow: hidden;
@@ -969,7 +980,7 @@
     }
     .wave-wrap svg { display: block; width: 100%; }
 
-    /* ─── SCROLL PROGRESS BAR ─── */
+    /* asnimasi scroll bagian atas*/
     #scrollProgress {
       position: fixed;
       top: 0; left: 0;
@@ -981,7 +992,7 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
 
-    /* ─── SECTION PILL POP ─── */
+    /* section pill pop*/
     .section-pill {
       display: inline-block;
       opacity: 0;
@@ -993,15 +1004,15 @@
       transform: scale(1) rotate(0deg);
     }
 
-    /* ─── VARIAN CARD HOVER ─── */
+    /* hover varian card */
     .varian-card { transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1) !important; }
     .varian-card:hover .varian-emoji { transform: scale(1.4) rotate(12deg) !important; animation: none !important; }
 
-    /* ─── KONTAK ITEM HOVER ─── */
+    /* kontak item hover*/
     .kontak-item { transition: transform 0.3s ease; }
     .kontak-item:hover { transform: translateX(10px); }
 
-    /* ─── STAT BOX COUNT BOUNCE ─── */
+    /* isi box jalan #tentang*/
     @keyframes countBounce {
       0% { transform: scale(1); }
       40% { transform: scale(1.25); }
@@ -1010,15 +1021,15 @@
     }
     .stat-box.visible .num { animation: countBounce 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards; }
 
-    /* ─── PAKET CARD GLOW ON ENTER ─── */
+    /* box kemitraan cahaya masuk */
     @keyframes glowIn {
       0%   { box-shadow: 6px 6px 0 rgba(0,0,0,0.2); }
-      50%  { box-shadow: 6px 6px 0 rgba(0,0,0,0.2), 0 0 40px rgba(255,224,53,0.5); }
+      50%  { box-shadow: 6px 6px 0 rgba(0,0,0,0.2), 0 0 40px rgb(255,224,53,0.5)}
       100% { box-shadow: 6px 6px 0 rgba(0,0,0,0.2); }
     }
     .paket-card.visible { animation: glowIn 1.2s ease 0.3s both; }
 
-    /* ─── FLOATING BANANA ON CLICK ─── */
+    /*pisang terbang (klik)*/
     .banana-pop {
       position: fixed;
       pointer-events: none;
@@ -1031,7 +1042,7 @@
       100% { opacity: 0; transform: translateY(-100px) scale(0.3) rotate(40deg); }
     }
 
-    /* ─── HAMBURGER MENU ─── */
+    /* menu humburger di hp */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -1078,7 +1089,7 @@
     }
     .nav-drawer a:last-child { border-bottom: none; }
 
-    /* ─── TV / LARGE MONITORS (1600px+) ─── */
+    /* tv / monito gede (1600px+) */
     @media (min-width: 1600px) {
       nav { padding: 0 8vw; }
       section { padding: 120px 8vw; }
@@ -1092,13 +1103,13 @@
       .stat-box .num { font-size: 2.8rem; }
     }
 
-    /* ─── TABLET LANDSCAPE (1024px - 1279px) ─── */
+    /* tablet lanscape (1024px - 1279px)  */
     @media (max-width: 1279px) {
       .varian-grid { grid-template-columns: repeat(3, 1fr); }
       .paket-grid { grid-template-columns: repeat(3, 1fr); }
     }
 
-    /* ─── TABLET PORTRAIT (768px - 1023px) ─── */
+    /*tablet potrait (768px - 1023px) */
     @media (max-width: 1023px) {
       nav { padding: 0 4vw; }
       .nav-links { display: none; }
@@ -1129,7 +1140,7 @@
       .form-row { grid-template-columns: 1fr 1fr; }
     }
 
-    /* ─── MOBILE (max 767px) ─── */
+    /*mobile /hp (max 767px) */
     @media (max-width: 767px) {
       nav { padding: 0 4vw; height: 64px; }
       .nav-logo img { height: 44px; }
@@ -1183,7 +1194,7 @@
       footer p { font-size: 0.82rem; }
     }
 
-    /* ─── SMALL MOBILE (max 380px) ─── */
+    /*hp kecil (max 380px)*/
     @media (max-width: 380px) {
       .hero-logo { width: 220px; }
       .hero-tagline { font-size: 0.82rem; }
@@ -1196,7 +1207,7 @@
 <body>
 <div id="scrollProgress"></div>
 
-<!-- NAV -->
+<!-- navigasi -->
 <nav>
   <div class="nav-logo">
     <img src="boananalogo.png" alt="BOANANA Logo" />
@@ -1213,7 +1224,7 @@
   </button>
 </nav>
 
-<!-- MOBILE DRAWER -->
+<!-- daftar nav di hp -->
 <div class="nav-drawer" id="navDrawer">
   <a href="#tentang" class="drawer-link">Tentang</a>
   <a href="#varian" class="drawer-link">Varian Rasa</a>
@@ -1222,7 +1233,7 @@
   <a href="#kontak" class="drawer-link">Kontak</a>
 </div>
 
-<!-- HERO -->
+<!-- hero -->
 <section id="hero">
   <div class="shape c1"></div>
   <div class="shape c2"></div>
@@ -1242,14 +1253,14 @@
   <div class="scroll-down">👇</div>
 </section>
 
-<!-- WAVE: hero -> tentang -->
+<!-- ombak: hero -> tentang -->
 <div class="wave-wrap" style="background:linear-gradient(160deg,#FFE135 0%,#FFD000 60%,#FFC200 100%);">
   <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#FFF9EC"/>
   </svg>
 </div>
 
-<!-- TENTANG -->
+<!-- tentang -->
 <section id="tentang" style="overflow:hidden;position:relative;">
   <div class="parallax-text" id="parallaxTentang">BOANANA</div>
   <div class="tentang-wrap">
@@ -1288,14 +1299,14 @@
   </div>
 </section>
 
-<!-- WAVE: tentang -> varian -->
+<!-- ombakl: tentang -> varian -->
 <div class="wave-wrap" style="background:#FFF9EC;">
   <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M0,0 C480,60 960,0 1440,40 L1440,60 L0,60 Z" fill="#FFE135"/>
   </svg>
 </div>
 
-<!-- VARIAN RASA -->
+<!-- varian rasa-->
 <section id="varian" style="overflow:hidden;position:relative;">
   <div class="parallax-text" id="parallaxVarian" style="color:rgba(0,0,0,0.04);">RASA RASA RASA</div>
   <div class="dots-bg"></div>
@@ -1344,14 +1355,14 @@
   </div>
 </section>
 
-<!-- WAVE: varian -> kemitraan -->
+<!-- ombak: varian -> kemitraan -->
 <div class="wave-wrap" style="background:#FFE135;">
   <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M0,40 C360,0 1080,60 1440,20 L1440,60 L0,60 Z" fill="#7B3F00"/>
   </svg>
 </div>
 
-<!-- KEMITRAAN -->
+<!-- kemitraan -->
 <section id="kemitraan">
   <div style="max-width:1100px;margin:0 auto;">
     <span class="section-pill2">Gabung Bareng Kami!</span>
@@ -1405,14 +1416,14 @@
   </div>
 </section>
 
-<!-- WAVE: kemitraan -> kritik -->
+<!-- ombak: kemitraan -> kritik -->
 <div class="wave-wrap" style="background:#7B3F00;">
   <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M0,20 C480,60 960,0 1440,40 L1440,60 L0,60 Z" fill="#FFF9EC"/>
   </svg>
 </div>
 
-<!-- KRITIK & SARAN -->
+<!-- kritik dn saran -->
 <section id="kritik">
   <div class="kritik-wrap">
     <span class="section-pill">Suara Kamu!</span>
@@ -1473,14 +1484,14 @@
   </div>
 </section>
 
-<!-- WAVE: kritik -> kontak -->
+<!-- ombak: kritik -> kontak -->
 <div class="wave-wrap" style="background:#FFF9EC;">
   <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M0,50 C360,0 1080,60 1440,10 L1440,60 L0,60 Z" fill="#FFD000"/>
   </svg>
 </div>
 
-<!-- KONTAK -->
+<!-- kontak -->
 <section id="kontak">
   <div class="kontak-wrap">
     <div>
@@ -1537,7 +1548,7 @@
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- footer -->
 <footer>
   <img src="boananalogo.png" alt="BOANANA" />
   <div class="footer-links">
@@ -1552,7 +1563,7 @@
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // ─── SCROLL PROGRESS BAR ───
+  // scrool bar animasi atas header 
   const progressBar = document.getElementById('scrollProgress');
   window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY;
@@ -1560,7 +1571,7 @@
     progressBar.style.width = (scrollTop / docHeight * 100) + '%';
   });
 
-  // ─── HAMBURGER MENU ───
+  //  hamburger menu
   const hamburger = document.getElementById('hamburger');
   const navDrawer = document.getElementById('navDrawer');
   if (hamburger) {
@@ -1582,7 +1593,7 @@
     });
   }
 
-  // ─── UNIVERSAL SCROLL REVEAL ───
+  // animasi scroll 
   const allReveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-pop, .section-pill, .section-title');
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
@@ -1596,7 +1607,7 @@
   }, { threshold: 0.12 });
   allReveals.forEach(el => revealObserver.observe(el));
 
-  // ─── STAT BOX NUMBER COUNT-UP ───
+  // animasi hitung box (tentang)
   function countUp(el, target, suffix) {
     let current = 0;
     const isInfinity = target === '∞';
@@ -1635,7 +1646,7 @@
   }, { threshold: 0.5 });
   document.querySelectorAll('.stat-box').forEach(el => statObserver.observe(el));
 
-  // ─── PARALLAX BG TEXT ───
+  // bg parralax teks
   const parallaxEls = [
     { el: document.getElementById('parallaxTentang'), speed: 0.3 },
     { el: document.getElementById('parallaxVarian'),  speed: 0.2 },
@@ -1650,9 +1661,9 @@
     });
   });
 
-  // ─── NAV ACTIVE HIGHLIGHT ───
+  // hover scrollbar saat scroll
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
+  const navLinks = document.querySelectorAll(' .nav-links a');
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(s => {
@@ -1660,12 +1671,12 @@
     });
     navLinks.forEach(a => {
       const isActive = a.getAttribute('href') === '#' + current;
-      a.style.background = isActive ? 'var(--brown)' : '';
-      a.style.color = isActive ? 'var(--yellow)' : '';
+      a.style.background = isActive ? 'var(--yellow)' : '';
+      a.style.color = isActive ? 'var(--brown)' : '';
     });
   });
 
-  // ─── FEEDBACK FORM ───
+  // form feed back
   const feedbackForm = document.getElementById('feedbackForm');
   if (feedbackForm) {
     feedbackForm.addEventListener('submit', function(e) {
@@ -1678,7 +1689,7 @@
     });
   }
 
-  // ─── KONTAK FORM ───
+  // form kontak
   const kontakForm = document.getElementById('kontakForm');
   if (kontakForm) {
     kontakForm.addEventListener('submit', function(e) {
@@ -1693,7 +1704,7 @@
     });
   }
 
-  // ─── FLOATING BANANA ON CLICK ───
+  // pisang melayang saat klik
   function spawnBanana(x, y) {
     for (let i = 0; i < 5; i++) {
       const b = document.createElement('div');
@@ -1708,7 +1719,7 @@
     }
   }
   document.addEventListener('click', (e) => {
-    // Only spawn on buttons and cards
+    
     if (e.target.closest('.btn-main, .btn-outline, .btn-paket, .btn-kontak-send, .btn-send, .varian-card')) {
       spawnBanana(e.clientX, e.clientY);
     }
