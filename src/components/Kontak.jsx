@@ -26,7 +26,7 @@ function Kontak() {
             <span className="section-pill">Hubungi Kami</span>
             <h2 className="section-title">Yuk Ngobrol! 📱</h2>
             <p style={{ color: 'var(--brown)', opacity: 0.75, marginBottom: '30px', fontSize: '1.05rem' }}>
-              Punya pertanyaan, ingin jadi mitra pertama, atau sekadar penasaran? Hubungi kami kapan saja — kami senang banget diajak ngobrol! 😊
+              Punya pertanyaan, ingin jadi mitra pertama, atau sekadar penasaran? Hubungi kami kapan saja — kami senang banget diajak ngobrol!
             </p>
 
             <div className="kontak-item reveal">

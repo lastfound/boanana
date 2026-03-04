@@ -15,7 +15,7 @@ function Hero() {
           <div className="hero-bananas">
             <span>🍌</span><span>🍌</span><span>🍌</span><span>🍌</span><span>🍌</span>
           </div>
-          <p className="hero-tagline">🎉 Keripik Pisang Kekinian dari Purwokerto — Segera Hadir!</p>
+          <p className="hero-tagline">Keripik Pisang Kekinian dari Purwokerto — Segera Hadir!</p>
           <div className="hero-btns">
             <a href="#varian"    className="btn-main">Intip Varian Rasa 🍌</a>
             <a href="#kemitraan" className="btn-outline">Jadi Mitra Pertama 🤝</a>
